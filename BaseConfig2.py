@@ -83,5 +83,7 @@
 # git remote set-url origin https://github.com/PandaAcademy/panda_application.git
 # git remote set-url origin --push https://github.com/przemaj1990/panda_aplication.git
 # git push origin master
-#
-#
+# git config --global user.email "przemaj1990@gmail.com"
+# git config --global user.name "przemaj1990"
+# git commit -m 'testowy commit/pierwszy'
+# git push
