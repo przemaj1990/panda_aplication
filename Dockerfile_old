@@ -1,0 +1,17 @@
+FROM openjdk:latest
+
+# RUN apt update -y && apt install vim -y
+
+ARG JAR_FILE="target/*.jar"
+
+COPY ${JAR_FILE} /
+
+# ENV 
+
+# USER 10000
+
+# CMD java -jar /app.jar
+
+CMD ["java", "-jar", "panda-0.0.1.jar"]
+
+# ENTRYPOINT ["java", "-jar", "/test.jar"]
