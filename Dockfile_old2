@@ -1,0 +1,48 @@
+
+FROM ubuntu:18.04
+WORKDIR /home
+RUN apt-get update && apt-get install -y \
+    maven \
+    git \
+    openjdk-11-jdk \
+RUN adduser newuser
+# RUN -fsSL https://get.docker.com -o get-docker.sh
+# RUN sh get-docker.sh
+
+
+# ARG JAR_FILE="target/*.jar"
+
+# COPY ${JAR_FILE} /
+
+# ENV 
+
+# USER 10000
+
+# CMD java -jar /app.jar
+
+# CMD ["java", "-jar", "panda-0.0.1.jar"]
+
+# ENTRYPOINT ["java", "-jar", "/test.jar"]
+
+
+
+-----------------------------
+
+FROM openjdk:11.0
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+==============================
+
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/ - i ostatni kod w dockerfile_old2
+FROM golang:1.13
+WORKDIR /go/src/github.com/alexellis/href-counter/
+COPY vendor vendor
+COPY app.go .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffic cgo -o app .
+FROM alpine:3.10
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
+COPY --from=0 /go/src/github.com/alexellis/href-counter/   .
+CMD {"./app"}

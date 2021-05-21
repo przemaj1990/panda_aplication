@@ -1,0 +1,62 @@
+# version: '3.9'
+
+# services:
+#     jenkins:
+#         image: jenkins/jenkins
+#         container_name: jenkins
+#         ports:
+#             - "8880:8080"
+#             - "50000:50000"
+#         volumes:
+#             - /home/panda/jenkins:/var/jenkins_home
+
+# version: '3.9'
+# services:
+#     go-app:
+#         image: app-go:1.0
+#         restart: always   # czy restartować
+#         # deploy:
+#             # replicas: 1            # ilość replik lub uycie scale, jeśli będą porty to będzie sie wywalać (inaczej porty podać)
+#         ports:
+#             - "8080:8080"
+#             - "8088:80"
+#         environment:
+#             - SHOW-true
+#     redis:
+#         build: /ścieŻa do dockerfila/
+#         image: redis
+#         restart: always
+    
+
+# version: '3'
+
+# services:
+#     alpine:
+#         image: sleeper:1.0
+#         # restart: always
+#         environment:
+#             # - NR_SLEEPER=${NR_SLEEPER}
+#             - NR_SLEEPER=36
+
+# version: '3'
+# services:
+#     ubuntu:
+#         image: ubuntu
+#     jenkins:
+#         image: jenkins/jenkins
+
+version: '3'
+services:
+    jenkins:
+        imager: jenkins/jenkins
+        ports:
+            - "8880:8080"
+            - "50000:50000"
+        volumes:
+            - /home/panda/jenkins:/var/jenkins_home
+        networks:
+            - docker_network
+    ubuntu:
+        build: /panda_application
+        networks:
+            - docker_network
