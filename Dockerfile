@@ -15,5 +15,4 @@
 # CMD sleep ${NR_SLEEPER}
 
 FROM ubuntu:18.04
-RUN apk add vim
 CMD sleep 1000

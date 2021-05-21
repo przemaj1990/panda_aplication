@@ -48,7 +48,7 @@
 version: '3'
 services:
     jenkins:
-        imager: jenkins/jenkins
+        image: jenkins/jenkins
         ports:
             - "8880:8080"
             - "50000:50000"
@@ -56,7 +56,18 @@ services:
             - /home/panda/jenkins:/var/jenkins_home
         networks:
             - docker_network
+
     ubuntu:
-        build: /panda_application
+        build: /home/panda/Project/panda_application
         networks:
             - docker_network
+
+    alpine:
+        image: sleeper:1.0
+        networks:
+            - alpine_network
+
+networks:
+    docker_network:
+        driver: bridge 
+    alpine_network:
